@@ -11,6 +11,18 @@ const createTask  = async(req,res)=>{
         res.status(500).json({message:'failed to create task', success:false});
     }
 }
+
+const fetchAllTask = async(req,res)=>{
+    try{
+        const data = await TaskModel.find({})
+        res.status(201)
+        .json({message:'All tasks', success:true, data})
+    }catch(err){
+        res.status(500).json({message:'failed to bring task', success: false})
+    }
+}
+
 module.exports = {
-    createTask
+    createTask,
+    fetchAllTask
 }
